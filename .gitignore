@@ -1,0 +1,8 @@
+*.o
+*.txt
+support
+entropy
+*qmake
+*.png
+*.pdf
+*.plt
