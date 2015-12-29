@@ -12,7 +12,7 @@ Workflow:
   * *setDegree(int L)*: the degree of polynomial is L.
   * *setInterval(int M)*: the approximation interval is [0,M/n], where n is the sample size.
   * *setThreshold(int N)*: the threshold to use polynomial estimator is when the histogram is at most N.
-2. Input fingerprint with *entropy.setFin( std::shared_ptr\< const std::map\<int, int\> \> fin )*. Here *fin* is a [shared pointer](http://www.cplusplus.com/reference/memory/shared_ptr/) of [map container](http://www.cplusplus.com/reference/map/map/) ; 
+2. Input fingerprint with *entropy.setFin( std::shared_ptr\< const std::map\<int, int\> \> fin )*. Here *fin* is a [shared pointer](http://www.cplusplus.com/reference/memory/shared_ptr/) of [map container](http://www.cplusplus.com/reference/map/map/), (*fin)[j] counts the number of symbols that appear j times; 
 3. Output various estimates: 
   * entropy.estimate(): our polynomial estimator
   * entropy.estimate_plug(): plug-in estimator
