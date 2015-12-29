@@ -30,6 +30,12 @@ gen.discrete( n, &p ): create n more samples with distribution p, old samples ar
 
 
 ### Entropy
+Workflow:
+
+1. Set parameters with *setDegree(L), setInterval(M), setThreshold(N)*;
+2. Input fingerprint with *entropy.setFin( fin )*, where *fin* is store in standard container std::map; 
+3. Output various estimates: 
+
 entropy.estimate_plug(): plug-in estimator
 
 entropy.estimate\_Miller\_Madow(): Miller-Madow estimator
@@ -40,4 +46,5 @@ entropy.estimate(): our polynomial estimator
 
 ## Reference
 For detailed explanation of parameters, please refer to the paper *"Minimax rates of entropy estimation on large alphabets via best polynomial approximation, arXiv:1407.0381"*.
-The paramters described in the paper are: *L=c<sub>0</sub> log k, M=c<sub>1</sub> log k, N=c<sub>2</sub> log k*
+The paramters described in the paper are: *L=c<sub>0</sub> log k, M=c<sub>1</sub> log k, N=c<sub>2</sub> log k*.
+As in the paper, the default values are *L=1.6 log k, M=3.5 log k, N=1.6 log k*.
