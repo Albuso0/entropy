@@ -5,18 +5,25 @@ Check out all source code, including the Makefile.
 
 Type *$make*, we are done!
 
+## Entropy estimator: *Entropy* class
+Workflow:
 
-## Usage
-Follow the code in *mainentropy.cpp*.
+1. Set alphabet size *k* and several parameters: 
+  * *setDegree(int L)*: the degree of polynomial is L.
+  * *setInterval(int M)*: the approximation interval is [0,M/n], where n is the sample size.
+  * *setThreshold(int N)*: the threshold to use polynomial estimator is when the histogram is at most N.
+2. Input fingerprint with *entropy.setFin( std::shared_ptr\< const std::map\<int, int\> \> fin )*. Here *fin* is a [shared pointer](http://www.cplusplus.com/reference/memory/shared_ptr/) of [map container](http://www.cplusplus.com/reference/map/map/) ; 
+3. Output various estimates: 
+  * entropy.estimate(): our polynomial estimator
+  * entropy.estimate_plug(): plug-in estimator
+  * entropy.estimate\_Miller\_Madow(): Miller-Madow estimator
 
 
-1. Setup entropy estimator *Entropy* with given alphabet size *k*: 
-  * *setDegree(L)*: the degree of polynomial is L.
-  * *setInterval(M)*: the approximation interval is [0,M/n], where n is the sample size.
-  * *setThreshold(N)*: the threshold to use polynomial estimator is when the histogram is at most N.
-2. Create a distribution vector *p* with alphabet size *k*.
-Several distributions is wrapped up in *distvec.h*.
-You can create other vectors as input distribution.
+## Sample code *mainentropy.cpp*
+Here we create synthetic data with *SampleGen* class. 
+
+1. Create entropy estimator *Entropy* with alphabet size *k*. Set degree, interval, threshold.
+2. Create uniform distribution vector *p* with alphabet size *k*. Several distributions is wrapped up in *distvec.h*.
 3. Create sample generator *SampleGen* to generate samples by *gen.discrete( n, &p )*.
 4. Put the fingerprint of those samples to the entropy estimator by *entropy.setFin( gen.getFin() )*.
 5. Output your estimate!
@@ -27,20 +34,6 @@ gen.setSeed( seed ): set seed for random number generator.
 gen.reset(): clear previous samples.
 
 gen.discrete( n, &p ): create n more samples with distribution p, old samples are all kept.
-
-
-### Entropy
-Workflow:
-
-1. Set parameters with *setDegree(L), setInterval(M), setThreshold(N)*;
-2. Input fingerprint with *entropy.setFin( fin )*, where *fin* is store in standard container std::map; 
-3. Output various estimates: 
-
-entropy.estimate_plug(): plug-in estimator
-
-entropy.estimate\_Miller\_Madow(): Miller-Madow estimator
-
-entropy.estimate(): our polynomial estimator
 
 
 
