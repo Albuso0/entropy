@@ -3,7 +3,7 @@
 
 #include <map>
 #include <memory>
-#include <boost/shared_array.hpp>
+#include <vector>
 
 class Entropy
 {
@@ -37,7 +37,7 @@ private:
     int n; // Sample size
     int k; // Alphabet size
     std::shared_ptr< const std::map<int, int> > mpFin; // Fingerprint(profile) // TODO: storage can be a list not necessarily a tree, since it need not to be updated by itself.
-    boost::shared_array< double > a; // polynomial coefficients
+    std::vector<double> a; // polynomial coefficients
 	
 	
 };

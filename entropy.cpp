@@ -1,7 +1,8 @@
 #include "entropy.h"
 #include <fstream>
 #include <iostream>
-
+#include <cmath>
+#include <limits>
 
 double Entropy::estimate()
 {
@@ -114,7 +115,8 @@ void Entropy::setFin(std::shared_ptr< const std::map<int, int> > fin)
 void Entropy::setDegree( int deg )
 {
     L = deg;
-    a = boost::shared_array<double>(new double[L+1]);
+    a.clear();
+    
     std::fstream fd_coeffs("coeffs.txt");
     // ignore the first L-1 lines
     fd_coeffs.seekg(std::ios::beg);
@@ -128,8 +130,12 @@ void Entropy::setDegree( int deg )
         std::cerr<<"Read the wrong line!!"<<std::endl;
         exit(1);
     }
+    double coeff;
     for (int i = 0; i <= L; i++)
-        fd_coeffs >> a[i];
+    {
+        fd_coeffs >> coeff;
+        a.push_back(coeff);
+    }
     fd_coeffs.close();
 }
 
