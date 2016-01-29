@@ -4,6 +4,7 @@
 #include <map>
 #include <memory>
 #include <vector>
+#include <string>
 
 class Entropy
 {
@@ -24,7 +25,8 @@ public:
     void setInterval( double rEnd ){ Ratio = rEnd; }
     void setDegree( int deg ); // also update the coefficients array
     void setFin(std::shared_ptr< const std::map<int, int> > fin); // set fingerprint, also update sample size
-
+    void setFin(std::string filename);
+    
     int getAlphabetSize() const{ return k; }
     int getSampleSize() const{ return n; }
     int getDegree() const{ return L; }

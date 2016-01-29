@@ -111,6 +111,24 @@ void Entropy::setFin(std::shared_ptr< const std::map<int, int> > fin)
         n += it->first * it->second;
 }
 
+void Entropy::setFin(std::string filename) 
+{
+    std::shared_ptr< std::map<int, int> > fin( new std::map<int, int> ); 
+    std::ifstream infile;
+    infile.open( filename.c_str() );
+    while ( !infile.eof() )
+    {
+        int freq, count;
+        infile >> freq >> count;
+        fin->insert( std::make_pair( freq,count ) );
+    }
+    infile.close();
+
+    mpFin = fin;
+    n = 0;
+    for ( auto it = mpFin->begin(); it != mpFin->end(); ++it )
+        n += it->first * it->second;
+}
 
 void Entropy::setDegree( int deg )
 {
