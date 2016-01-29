@@ -1,6 +1,6 @@
 *.o
 *.txt
-support
+test
 entropy
 *qmake
 *.png

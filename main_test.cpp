@@ -19,6 +19,10 @@ int main(int argc, char *argv[])
 
     // Input fingerprint from file
     entropy.setFin("fin_sample.txt"); // fingerprint of 3000 samples generated from uniform[100000]
+    // std::vector<int> f,c;
+    // f.push_back(1); c.push_back(2910); 
+    // f.push_back(2); c.push_back(45);
+    // entropy.setFin(f,c);
 
     printf("\nResults:\n");
     printf("sample size\t=%d\n",entropy.getSampleSize());

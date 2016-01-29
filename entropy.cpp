@@ -8,7 +8,7 @@ double Entropy::estimate()
 {
     double HEsti = 0;
     int symbolnumber = 0;
-    for ( const auto & pair : *mpFin )
+    for ( const auto & pair : fin )
     {
         int N = pair.first;
         symbolnumber += pair.second;
@@ -33,7 +33,7 @@ double Entropy::estimate()
 double Entropy::estimate_non_zero() // Only use fingerprint f_j for j>=1. In other words, g(0)=0.
 {
     double HEsti = 0;
-    for ( const auto & pair : *mpFin )
+    for ( const auto & pair : fin )
     {
         int N = pair.first;
         if ( N > N_thr) // plug-in
@@ -57,7 +57,7 @@ double Entropy::estimate_Miller_Madow()
 {
     double HEsti = 0;
     int symbolnumber = 0;
-    for ( const auto & pair : *mpFin )
+    for ( const auto & pair : fin )
     {
         int N = pair.first;
         symbolnumber += pair.second;
@@ -74,7 +74,7 @@ double Entropy::estimate_Miller_Madow()
 double Entropy::estimate_plug()
 {
     double HEsti = 0;
-    for ( const auto & pair : *mpFin )
+    for ( const auto & pair : fin )
     {
         int N = pair.first;
         if ( N>0 )
@@ -103,43 +103,44 @@ double Entropy::getCoeff( int N )
 }
 
 
-void Entropy::setFin(std::shared_ptr< const std::map<int, int> > fin) 
+void Entropy::setFin(std::shared_ptr< const std::map<int, int> > ptr_fin_map) 
 {
-    mpFin = fin;
+    fin.clear();
     n = 0;
-    for ( std::map<int,int>::const_iterator it = mpFin->begin(); it != mpFin->end(); ++it )
-        n += it->first * it->second;
+    for ( auto it = ptr_fin_map->begin(); it != ptr_fin_map->end(); ++it )
+    {
+        int freq = it->first, cnt = it->second;
+        fin.push_back( std::make_pair( freq, cnt ) );
+        n += (freq * cnt);
+    }
 }
 
 void Entropy::setFin(std::string filename) 
 {
-    std::shared_ptr< std::map<int, int> > fin( new std::map<int, int> ); 
+    fin.clear();
+    n = 0;
     std::ifstream infile;
     infile.open( filename.c_str() );
-    while ( !infile.eof() )
+    int freq, cnt;
+    while ( (infile>>freq).good() )
     {
-        int freq, count;
-        infile >> freq >> count;
-        fin->insert( std::make_pair( freq,count ) );
+        infile >> cnt;
+        fin.push_back( std::make_pair( freq, cnt ) );
+        n += (freq * cnt);
     }
     infile.close();
-
-    mpFin = fin;
-    n = 0;
-    for ( auto it = mpFin->begin(); it != mpFin->end(); ++it )
-        n += it->first * it->second;
 }
 
-void Entropy::setFin(const std::vector<int> &freq, const std::vector<int> &cnt)
+void Entropy::setFin(const std::vector<int> &freq_in, const std::vector<int> &cnt_in)
 {
-    std::shared_ptr< std::map<int, int> > fin( new std::map<int, int> );
-    for ( int i = 0; i < freq.size(); i++)
-        fin->insert( std::make_pair( freq[i], cnt[i] ) );
-
-    mpFin = fin;
+    fin.clear();
     n = 0;
-    for ( auto it = mpFin->begin(); it != mpFin->end(); ++it )
-        n += it->first * it->second;
+    for ( int i = 0; i < freq_in.size(); i++)
+    {
+        int freq = freq_in[i], cnt = cnt_in[i];
+        fin.push_back( std::make_pair( freq, cnt ) );
+        n += (freq * cnt);
+    }
 }
 
 void Entropy::setDegree( int deg )

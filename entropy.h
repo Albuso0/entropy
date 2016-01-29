@@ -24,7 +24,8 @@ public:
     void setThreshold( double N_threshold ){ N_thr = N_threshold; }
     void setInterval( double rEnd ){ Ratio = rEnd; }
     void setDegree( int deg ); // also update the coefficients array
-    void setFin(std::shared_ptr< const std::map<int, int> > fin); // set fingerprint, also update sample size
+    // set fingerprint, also update sample size
+    void setFin(std::shared_ptr< const std::map<int, int> > fin); 
     void setFin(std::string filename);
     void setFin(const std::vector<int> &freq, const std::vector<int> &cnt);
     
@@ -39,7 +40,7 @@ private:
     int L; // =c0*log(k). Degree of polynomial
     int n; // Sample size
     int k; // Alphabet size
-    std::shared_ptr< const std::map<int, int> > mpFin; // Fingerprint(profile) // TODO: storage can be a list not necessarily a tree, since it need not to be updated by itself.
+    std::vector< std::pair<int, int> > fin; // Fingerprint(profile)
     std::vector<double> a; // polynomial coefficients
 	
 	
