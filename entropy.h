@@ -26,6 +26,7 @@ public:
     void setDegree( int deg ); // also update the coefficients array
     void setFin(std::shared_ptr< const std::map<int, int> > fin); // set fingerprint, also update sample size
     void setFin(std::string filename);
+    void setFin(const std::vector<int> &freq, const std::vector<int> &cnt);
     
     int getAlphabetSize() const{ return k; }
     int getSampleSize() const{ return n; }

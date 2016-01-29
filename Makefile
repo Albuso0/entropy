@@ -37,10 +37,10 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = 
-OBJECTS       = samplegen.o	entropy.o	mainentropy.o	## TODO: add all corresponding .o files here
+OBJECTS       = entropy.o	main_test.o	## TODO: add all corresponding .o files here
 DIST          =
 DESTDIR       = #avoid trailing-slash linebreak
-TARGET        = entropy
+TARGET        = test
 
 
 first: all
@@ -67,8 +67,8 @@ first: all
 
 all: $(TARGET)
 
-entropy: entropy.o samplegen.o mainentropy.o
-	$(LINK) $(LFLAGS) entropy.o samplegen.o mainentropy.o $(LIBS) -o entropy
+test: entropy.o main_test.o
+	$(LINK) $(LFLAGS) entropy.o main_test.o $(LIBS) -o test
 
 # $(TARGET):  $(OBJECTS)  
 # 	$(LINK) $(LFLAGS) $(OBJECTS) $(OBJCOMP) $(LIBS) -o $(TARGET)
@@ -94,11 +94,8 @@ compiler_clean:
 
 # TODO: add all dependencies for the .o
 
-samplegen.o: samplegen.cpp samplegen.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o samplegen.o samplegen.cpp
-
 entropy.o: entropy.cpp entropy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o entropy.o entropy.cpp
 
-mainentropy.o: mainentropy.cpp entropy.h samplegen.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainentropy.o mainentropy.cpp
+maine_test.o: main_test.cpp entropy.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main_test.o main_test.cpp
