@@ -4,7 +4,7 @@
 #include <cmath>
 #include <limits>
 
-double Entropy::estimate()
+double Entropy::estimate() const 
 {
     double HEsti = 0;
     int symbolnumber = 0;
@@ -30,7 +30,7 @@ double Entropy::estimate()
     return HEsti/log(2); // return the estimated entropy (bits)
 }
 
-double Entropy::estimate_non_zero() // Only use fingerprint f_j for j>=1. In other words, g(0)=0.
+double Entropy::estimate_non_zero() const // Only use fingerprint f_j for j>=1. In other words, g(0)=0.
 {
     double HEsti = 0;
     for ( const auto & pair : fin )
@@ -53,7 +53,7 @@ double Entropy::estimate_non_zero() // Only use fingerprint f_j for j>=1. In oth
     return HEsti/log(2); // return the estimated entropy (bits)
 }
 
-double Entropy::estimate_Miller_Madow()
+double Entropy::estimate_Miller_Madow() const
 {
     double HEsti = 0;
     int symbolnumber = 0;
@@ -71,7 +71,7 @@ double Entropy::estimate_Miller_Madow()
 }
 
 
-double Entropy::estimate_plug()
+double Entropy::estimate_plug() const
 {
     double HEsti = 0;
     for ( const auto & pair : fin )
@@ -87,7 +87,7 @@ double Entropy::estimate_plug()
 }
 
 
-double Entropy::getCoeff( int N )
+double Entropy::getCoeff( int N ) const
 {
     if ( N < 0 )
     {

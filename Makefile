@@ -37,10 +37,10 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = 
-OBJECTS       = entropy.o	main_test.o	## TODO: add all corresponding .o files here
+OBJECTS       = entropy.o	main_test.o	commandline.o	## TODO: add all corresponding .o files here
 DIST          =
 DESTDIR       = #avoid trailing-slash linebreak
-TARGET        = test
+TARGET        = test	entropy
 
 
 first: all
@@ -70,6 +70,9 @@ all: $(TARGET)
 test: entropy.o main_test.o
 	$(LINK) $(LFLAGS) entropy.o main_test.o $(LIBS) -o test
 
+entropy: entropy.o main.o commandline.o
+	$(LINK) $(LFLAGS) entropy.o main.o commandline.o $(LIBS) -o entropy
+
 # $(TARGET):  $(OBJECTS)  
 # 	$(LINK) $(LFLAGS) $(OBJECTS) $(OBJCOMP) $(LIBS) -o $(TARGET)
 
@@ -97,5 +100,8 @@ compiler_clean:
 entropy.o: entropy.cpp entropy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o entropy.o entropy.cpp
 
-maine_test.o: main_test.cpp entropy.h
+main_test.o: main_test.cpp entropy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main_test.o main_test.cpp
+
+main.o: main.cpp entropy.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
