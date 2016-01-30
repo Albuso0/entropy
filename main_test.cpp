@@ -14,11 +14,11 @@ int main(int argc, char *argv[])
     entropy.setDegree( 18 ); // L = 1.6 log k
     entropy.setInterval( 40 ); // M = 3.5 log k
     entropy.setThreshold( 18 ); // N = 1.6 log k
-    print_param(entropy);
+    print_param(entropy); // print parameters
 
     // Input fingerprint from file
     entropy.setFin("fin_sample.txt"); // fingerprint of 3000 samples generated from uniform[100000]
-    print_results(entropy);
+    print_results(entropy); // print estimation results
 
     // Input fingerprint inline
     std::vector<int> freq, cnt;
@@ -26,7 +26,18 @@ int main(int argc, char *argv[])
     freq.push_back(2); cnt.push_back(45);
     entropy.setFin(freq, cnt);
     print_results(entropy);
+
+    // Input histogram from file
+    entropy.setHist("hist_sample.txt"); // histogram of 3000 samples generated from uniform[100000]
+    print_results(entropy);
     
+    // Input histogram inline
+    std::vector<int> hist;
+    for (int i = 0; i < 2910; i++) hist.push_back(1);
+    for (int i = 0; i < 45; i++) hist.push_back(2);
+    entropy.setHist(hist);
+    print_results(entropy);
+
     return 0;
 }
 

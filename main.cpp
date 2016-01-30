@@ -11,20 +11,21 @@ int main(int argc, char *argv[])
 {
     int k =0 , L = 0, N = 0;
     double M = 0;
-    std::string filename = "";
+    std::string fin = "", hist = "";
     
     std::CommandLine cmd;
     cmd.AddValue ("k",  "Alphabet size", k);
     cmd.AddValue ("L",  "Polynoimal degree. Default c0*log(k)", L);
     cmd.AddValue ("M",  "M/n is the right-end of approximation interval. Default c1*log(k)", M);
     cmd.AddValue ("N",  "Threshold to apply polynomial estimator. Default c2*log(k)", N);
-    cmd.AddValue ("fin",  "fingerprint data file", filename);
+    cmd.AddValue ("fin",  "fingerprint data file", fin);
+    cmd.AddValue ("hist",  "histogram data file", hist);
     cmd.Parse (argc, argv);
     if( k == 0 ) { std::cerr<<"Please input k!\n"; exit(1); }
     if( L == 0 ) L = 1.6*log(k); // Default value
     if( M == 0 ) M = 3.5*log(k); // Default value
     if( N == 0 ) N = 1.6*log(k); // Default value
-    if( filename == "" ) { std::cerr<<"Please input fingerprint!\n"; exit(1); }
+    if( (hist=="") && (fin=="") ) { std::cerr<<"Please input fingerprint or histogram!\n"; exit(1); }
 
     printf("\n");
     // Set estimator
@@ -35,7 +36,10 @@ int main(int argc, char *argv[])
     print_param(entropy);
 
     // Input fingerprint from file
-    entropy.setFin(filename); // fingerprint of 3000 samples generated from uniform[100000]
+    if ( fin!="")
+        entropy.setFin(fin);
+    else
+        entropy.setHist(hist);
     print_results(entropy);
     
     return 0;

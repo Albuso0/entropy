@@ -115,7 +115,7 @@ void Entropy::setFin(std::shared_ptr< const std::map<int, int> > ptr_fin_map)
     }
 }
 
-void Entropy::setFin(std::string filename) 
+void Entropy::setFin(const std::string filename) 
 {
     fin.clear();
     n = 0;
@@ -138,6 +138,59 @@ void Entropy::setFin(const std::vector<int> &freq_in, const std::vector<int> &cn
     for ( int i = 0; i < freq_in.size(); i++)
     {
         int freq = freq_in[i], cnt = cnt_in[i];
+        fin.push_back( std::make_pair( freq, cnt ) );
+        n += (freq * cnt);
+    }
+}
+
+void Entropy::setHist( const std::vector<int> &hist )
+{
+    fin.clear();
+    n = 0;
+    
+    std::map<int, int> fin_map;
+    for ( const auto & freq : hist )
+    {
+        auto iter = fin_map.find( freq );
+        if ( iter == fin_map.end() )
+            fin_map.insert( std::make_pair( freq,1 ) );
+        else
+            ++(iter->second);
+    }
+    
+    for ( auto it = fin_map.begin(); it != fin_map.end(); ++it )
+    {
+        int freq = it->first, cnt = it->second;
+        fin.push_back( std::make_pair( freq, cnt ) );
+        n += (freq * cnt);
+    }
+}
+
+void Entropy::setHist(const std::string filename) 
+{
+    fin.clear();
+    n = 0;
+    std::map<int, int> fin_map;
+    
+    std::ifstream infile;
+    infile.open( filename.c_str() );
+    int freq;
+    while ( (infile>>freq).good() )
+    {
+        if ( freq == 0)
+            continue;
+
+        auto iter = fin_map.find( freq );
+        if ( iter == fin_map.end() )
+            fin_map.insert( std::make_pair( freq,1 ) );
+        else
+            ++(iter->second);
+    }
+    infile.close();
+
+    for ( auto it = fin_map.begin(); it != fin_map.end(); ++it )
+    {
+        int freq = it->first, cnt = it->second;
         fin.push_back( std::make_pair( freq, cnt ) );
         n += (freq * cnt);
     }

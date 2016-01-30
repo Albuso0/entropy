@@ -25,9 +25,12 @@ public:
     void setInterval( double rEnd ){ Ratio = rEnd; }
     void setDegree( int deg ); // also update the coefficients array
     // set fingerprint, also update sample size
-    void setFin(std::shared_ptr< const std::map<int, int> > fin); 
-    void setFin(std::string filename);
-    void setFin(const std::vector<int> &freq, const std::vector<int> &cnt);
+    void setFin( std::shared_ptr< const std::map<int, int> > fin ); 
+    void setFin( const std::string filename );
+    void setFin( const std::vector<int> &freq, const std::vector<int> &cnt );
+    // set fingerprint through histogram, also update sample size
+    void setHist( const std::vector<int> &hist );
+    void setHist( const std::string filename );
     
     int getAlphabetSize() const{ return k; }
     int getSampleSize() const{ return n; }
