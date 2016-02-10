@@ -4,6 +4,7 @@
 #include <cmath>
 #include <limits>
 #include <cstdlib>
+#include <cstdio>
 
 double Entropy::estimate() const 
 {

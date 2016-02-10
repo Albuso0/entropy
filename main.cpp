@@ -1,9 +1,10 @@
 #include <iostream>
+#include <cstdlib>
+#include <cstdio>
 #include <cmath>
 #include <string>
 #include "entropy.h"
 #include "commandline.h"
-#include <cstdlib>
 
 void print_param(const Entropy &entropy);
 void print_results(const Entropy &entropy);

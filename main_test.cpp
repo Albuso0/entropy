@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
+#include <cstdio>
 
 void print_param(const Entropy &entropy);
 void print_results(const Entropy &entropy);
