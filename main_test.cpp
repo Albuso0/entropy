@@ -1,6 +1,7 @@
 #include "entropy.h"
 #include <iostream>
 #include <cmath>
+#include <cstdlib>
 
 void print_param(const Entropy &entropy);
 void print_results(const Entropy &entropy);
