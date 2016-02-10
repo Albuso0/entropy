@@ -3,14 +3,14 @@ MAKEFILE      = Makefile
 ####### Compiler, tools and options
 
 CC            = gcc
-CXX           = g++
+CXX           = g++	# x86_64-w64-mingw32-g++
 DEFINES       = -std=c++14 # -Wextra -pedantic
 CFLAGS        = -pipe -O2 -D_REENTRANT -Wall -W -fPIE $(DEFINES)
 CXXFLAGS      = -pipe -O2 -D_REENTRANT -Wall -W -fPIE $(DEFINES)
 INCPATH       = -I.
-LINK          = g++
+LINK          = g++	# x86_64-w64-mingw32-g++
 LFLAGS        = -Wl,-O1
-LIBS          = $(SUBLIBS) -lpthread 
+LIBS          = $(SUBLIBS) -lpthread -lstdc++
 AR            = ar cqs
 RANLIB        = 
 TAR           = tar -cf
@@ -37,7 +37,7 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = 
-OBJECTS       = entropy.o	main_test.o	commandline.o	## TODO: add all corresponding .o files here
+OBJECTS       = entropy.o	main.o	main_test.o	commandline.o	## TODO: add all corresponding .o files here
 DIST          =
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = test	entropy
@@ -97,11 +97,11 @@ compiler_clean:
 
 # TODO: add all dependencies for the .o
 
-entropy.o: entropy.cpp entropy.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o entropy.o entropy.cpp
-
 commandline.o: commandline.cpp commandline.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o commandline.o commandline.cpp
+
+entropy.o: entropy.cpp entropy.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o entropy.o entropy.cpp
 
 main_test.o: main_test.cpp entropy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main_test.o main_test.cpp
