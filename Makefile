@@ -100,6 +100,9 @@ compiler_clean:
 entropy.o: entropy.cpp entropy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o entropy.o entropy.cpp
 
+commandline.o: commandline.cpp commandline.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o commandline.o commandline.cpp
+
 main_test.o: main_test.cpp entropy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main_test.o main_test.cpp
 

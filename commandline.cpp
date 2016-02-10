@@ -41,7 +41,7 @@ namespace std
                         {
                             // method below never returns.
                             PrintHelp (std::cout);
-                            std::exit (0);
+                            exit (0);
                         } 
 			// read value
 			for (Items::const_iterator i = m_items.begin (); i != m_items.end (); ++i)
@@ -52,7 +52,7 @@ namespace std
 					{
 						std::cerr << "Invalid argument value: "<< name << "=" << value << std::endl;
 						PrintHelp (std::cerr);
-						std::exit (1);
+						exit (1);
 					}
 				}
 			}

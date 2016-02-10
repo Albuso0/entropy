@@ -3,9 +3,10 @@
 // Basic version
 
 #include <list>
-#include <string.h>
+#include <string>
 #include <algorithm>
 #include <sstream>
+#include <ostream>
 
 
 namespace std
