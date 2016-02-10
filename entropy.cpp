@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cmath>
 #include <limits>
+#include <cstdlib>
 
 double Entropy::estimate() const 
 {
