@@ -93,7 +93,7 @@ double Entropy::getCoeff( int N ) const
     if ( N < 0 )
     {
         std::cerr<<"Compute g(N) for negative N!!"<<std::endl;
-        exit(1);
+        std::exit(1);
     }
     int L0 = ( N > L )? L:N;
     double gL = a[L0];
@@ -213,7 +213,7 @@ void Entropy::setDegree( int deg )
     if ( L != test_L )
     {
         std::cerr<<"Read the wrong line!!"<<std::endl;
-        exit(1);
+        std::exit(1);
     }
     double coeff;
     for (int i = 0; i <= L; i++)

@@ -3,6 +3,7 @@
 #include <string>
 #include "entropy.h"
 #include "commandline.h"
+#include <cstdlib>
 
 void print_param(const Entropy &entropy);
 void print_results(const Entropy &entropy);
@@ -21,11 +22,11 @@ int main(int argc, char *argv[])
     cmd.AddValue ("fin",  "fingerprint data file", fin);
     cmd.AddValue ("hist",  "histogram data file", hist);
     cmd.Parse (argc, argv);
-    if( k == 0 ) { std::cerr<<"Please input k!\n"; exit(1); }
+    if( k == 0 ) { std::cerr<<"Please input k!\n"; std::exit(1); }
     if( L == 0 ) L = 1.6*log(k); // Default value
     if( M == 0 ) M = 3.5*log(k); // Default value
     if( N == 0 ) N = 1.6*log(k); // Default value
-    if( (hist=="") && (fin=="") ) { std::cerr<<"Please input fingerprint or histogram!\n"; exit(1); }
+    if( (hist=="") && (fin=="") ) { std::cerr<<"Please input fingerprint or histogram!\n"; std::exit(1); }
 
     printf("\n");
     // Set estimator
