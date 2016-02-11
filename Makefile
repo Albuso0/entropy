@@ -3,14 +3,14 @@ MAKEFILE      = Makefile
 ####### Compiler, tools and options
 
 CC            = gcc
-CXX           = g++	# x86_64-w64-mingw32-g++
+CXX           = g++
 DEFINES       = -std=c++14 # -Wextra -pedantic
 CFLAGS        = -pipe -O2 -D_REENTRANT -Wall -W -fPIE $(DEFINES)
 CXXFLAGS      = -pipe -O2 -D_REENTRANT -Wall -W -fPIE $(DEFINES)
 INCPATH       = -I.
-LINK          = g++	# x86_64-w64-mingw32-g++
+LINK          = g++
 LFLAGS        = -Wl,-O1
-LIBS          = $(SUBLIBS) -lpthread -lstdc++
+LIBS          = $(SUBLIBS) # -lpthread -lstdc++
 AR            = ar cqs
 RANLIB        = 
 TAR           = tar -cf
