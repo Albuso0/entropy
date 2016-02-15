@@ -7,7 +7,7 @@
 void print_param(const Entropy &entropy);
 void print_results(const Entropy &entropy);
 
-int main(int argc, char *argv[])
+int main()
 {
     int k = 100000;
 

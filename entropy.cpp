@@ -136,7 +136,7 @@ void Entropy::setFin(const std::vector<int> &freq_in, const std::vector<int> &cn
 {
     fin.clear();
     n = 0;
-    for ( int i = 0; i < freq_in.size(); i++)
+    for ( unsigned i = 0; i < freq_in.size(); i++)
     {
         int freq = freq_in[i], cnt = cnt_in[i];
         fin.push_back( std::make_pair( freq, cnt ) );

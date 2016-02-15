@@ -5,8 +5,8 @@ MAKEFILE      = Makefile
 CC            = gcc
 CXX           = g++
 DEFINES       = -std=c++14 # -Wextra -pedantic
-CFLAGS        = -pipe -O2 -D_REENTRANT -Wall -W -fPIE $(DEFINES)
-CXXFLAGS      = -pipe -O2 -D_REENTRANT -Wall -W -fPIE $(DEFINES)
+CFLAGS        = -O2 -Wall $(DEFINES)
+CXXFLAGS      = -O2 -Wall $(DEFINES)
 INCPATH       = -I.
 LINK          = g++
 LFLAGS        = -Wl,-O1
@@ -106,5 +106,5 @@ entropy.o: entropy.cpp entropy.h
 main_test.o: main_test.cpp entropy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main_test.o main_test.cpp
 
-main.o: main.cpp entropy.h
+main.o: main.cpp entropy.h commandline.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
