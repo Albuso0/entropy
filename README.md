@@ -1,6 +1,6 @@
-#Tutorial
+# Tutorial
 
-##Compile and run
+## Compile and run
 Check out all source code, including the Makefile and .txt files.
 
 Type ```make``` to compile the sources, you will get executable file *"entropy"*.
