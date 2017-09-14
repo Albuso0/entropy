@@ -9,13 +9,8 @@ Table of contents
 =================
 * [Table of contents](#table-of-contents)
 * [Python](#python)
-<<<<<<< HEAD
 * [C++](#c)
 * [References](#reference)
-=======
-* [C++](#c++)
-* [References](#references)
->>>>>>> d3b27e0282d1e7e3792f50d9e05fc7291d578c2b
 
 
 Python
