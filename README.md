@@ -54,7 +54,7 @@ In case of raw data, we have functions for this statistics:
 We implemented classical entropy estimators, and outputs are all in bits:  
 
 * ```entropy.estimate_plug(fin)```: plug-in estimator
-* ```entropy.estimate__Miller_Madow(fin)```: Miller-Madow estimator
+* ```entropy.estimate_Miller_Madow(fin)```: Miller-Madow estimator
 
 Comprehensive script
 ---------
